@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="Toy" class="com.netcracker.Toy"/>
+
+    <bean id="Box" class="com.netcracker.Box">
+        <constructor-arg ref="Toy"/>
+    </bean>
+
+    <bean id="Worker" class="com.netcracker.Worker"/>
+    <bean id="Facility" class="com.netcracker.Facility">
+        <property name="worker" ref="Worker"/>
+        <property name="region" value="Nice One"/>
+    </bean>
+
+    <bean id="collectionsBundle" class="com.netcracker.CollectionsBundle">
+        <property name="testList">
+        <list>
+            <value>1</value>
+            <value>2</value>
+            <value>3</value>
+            <value>4</value>
+        </list>
+        </property>
+
+        <property name="testSet">
+            <set>
+                <value>1</value>
+                <value>two</value>
+                <value>3</value>
+                <value>should be 4 but idk</value>
+            </set>
+        </property>
+    </bean>
+
+    <bean id="separateMapTestClass" class="com.netcracker.SeparateMapTestClass">
+        <constructor-arg>
+            <map>
+                <entry key="1" value="valueindeed"/>
+                <entry key="2" value="-_-"/>
+                <entry key="3" value="44"/>
+                <entry key="4" value="nope"/>
+            </map>
+        </constructor-arg>
+
+    </bean>
+
+    <bean id="Machine" class="com.SpELparent.Machine">
+        <property name="prop" value="parent machine"/>
+    </bean>
+
+
+    <bean id="ExtendedMachine" class="com.SpELparent.ExtendedMachine" parent="Machine">
+        <property name="name" value="child machine"/>
+    </bean>
+
+    <bean id="user" class="com.autowiring.User" autowire="byName"/>
+
+    <bean id="person" class="com.autowiring.Person">
+        <property name="name" value="Greg"/>
+    </bean>
+
+    <bean id="petContainer" class="com.factory.PetContainer"/>
+    <bean id="pet" class="com.factory.PetContainer" factory-method="getPet"
+          factory-bean="petContainer"></bean>
+
+
+
+
+
+
+
+</beans>
